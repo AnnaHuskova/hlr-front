@@ -1,26 +1,62 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Route, Routes, Navigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import envVars from "./js/env";
+import { MainLayout } from "./layouts/MainLayout/MainLayout";
+import { MapLayout } from "./layouts/MapLayout/MapLayout";
+import HomePage from "./pages/HomePage";
+import { CityId } from "./config/cities";
+import { HeritageFeatureCollection } from "./types/heritageObj/HeritageFeatureCollection";
+
+const BACKEND_URL = envVars.REACT_APP_BACKEND_URL!;
+const HERITAGE_ENDPOINT = envVars.REACT_APP_HERITAGE_ENDPOINT!;
 
 function App() {
+  const [cityId, setCityId] = useState<CityId>("kamyanske");
+  const [heritageData, setHeritageData] =
+    useState<HeritageFeatureCollection | null>(null);
+
+  useEffect(() => {
+    const fetchHeritage = async () => {
+      try {
+        const res = await fetch(
+          `${BACKEND_URL}${HERITAGE_ENDPOINT}?cityId=${cityId}`
+        );
+        const geojson = await res.json();
+        setHeritageData(geojson);
+      } catch (e) {
+        console.error("Failed to load heritage data", e);
+      }
+    };
+
+    fetchHeritage();
+  }, [cityId]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Routes>
+        <Route element={<MainLayout />}>
+          <Route element={<MapLayout />}>
+            <Route
+              path="/"
+              element={
+                heritageData ? (
+                  <HomePage
+                    cityId={cityId}
+                    setCityId={setCityId}
+                    heritageData={heritageData}
+                  />
+                ) : null
+              }
+            />
+          </Route>
+        </Route>
+
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+
+    </>
   );
+
 }
 
 export default App;
