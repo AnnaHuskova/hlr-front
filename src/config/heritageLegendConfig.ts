@@ -3,7 +3,7 @@ import { HERITAGE_COLORS } from "./heritageStyle";
 export const HERITAGE_LEGEND = [
   {
     id: "garden_park",
-    label: "Сад / парк",
+    label: "Пам'ятка садово-паркового мистецтва",
     color: HERITAGE_COLORS.garden_park,
     geometry: "polygon",
   },
@@ -33,7 +33,7 @@ export const HERITAGE_LEGEND = [
   },
   {
     id: "urban_planning",
-    label: "Містобудівна структура",
+    label: "Визначний містобудівний ареал",
     color: HERITAGE_COLORS.isHeritage,
     geometry: "outline-only",
   },

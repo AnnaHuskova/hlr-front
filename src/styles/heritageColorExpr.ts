@@ -23,11 +23,11 @@ export const heritageColorExpr: ExpressionSpecification = [
 
   // 🟡 significant
   ["==", ["get", "historicalValue"], "significant"],
-  "#cfa800",
+  "#d1a514",
 
   // 🟨 ordinary
   ["==", ["get", "historicalValue"], "ordinary"],
-  "#f1e05a",
+  "#fbff00",
 
   // fallback
   "#cccccc",
