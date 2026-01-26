@@ -24,6 +24,15 @@ html, body, #root {
   inset: 0;
 }
 
+.heritage-popup .maplibregl-popup-content {
+  padding: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.heritage-popup .maplibregl-popup-tip {
+  display: none;
+}
 
 /* body {
   margin: 0;

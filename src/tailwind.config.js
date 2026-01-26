@@ -6,6 +6,7 @@ module.exports = {
   theme: {
     colors: {
       "accent": "#d000ff",
+      "accentHover": "#00FF29",
       "navlink": "#8484A0",
       "navlinkActive": "#000000",
       'white': '#FFFFFF',
