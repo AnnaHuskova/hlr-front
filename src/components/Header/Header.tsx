@@ -1,6 +1,6 @@
 import { memo } from 'react';
 import { NavMenu } from '../NavMenu';
-// import { ReactComponent as Logo } from '../../assets/images/logo-colored.svg';
+import { ReactComponent as Logo } from '../../assets/isons/logo.svg';
 
 
 const Header = memo(() => {
@@ -10,8 +10,7 @@ const Header = memo(() => {
         >
           <a href="/" target="_self">
             <div>
-                <h1 className='block h-11 p-1 lg:h-14 w-auto'>NPL</h1>
-
+                <Logo className='block h-11 p-1 lg:h-14 w-auto' />
             </div>
           </a>
                   <NavMenu />
