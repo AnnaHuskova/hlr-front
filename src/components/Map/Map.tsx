@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import maplibregl from "maplibre-gl";
+import maplibregl, { MapGeoJSONFeature } from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
 import { CITIES, CityId } from "../../config/cities";
 import { HeritageFeatureCollection } from "../../types/heritageObj/HeritageFeatureCollection";
@@ -7,11 +7,29 @@ import { addHeritageLayers } from "../../styles/addHeritageLayers";
 interface MapProps {
   cityId: CityId;
   heritageData: HeritageFeatureCollection;
+  onFeatureClick?: (
+    feature: MapGeoJSONFeature,
+    lngLat: maplibregl.LngLatLike,
+  ) => void;
+  onEmptyClick?: () => void;
+  onMapReady?: (map: maplibregl.Map) => void;
 }
 
-export function Map({ cityId, heritageData }: MapProps) {
+export function Map({
+  cityId,
+  heritageData,
+  onFeatureClick,
+  onEmptyClick,
+  onMapReady,
+}: MapProps) {
   const mapContainerRef = useRef<HTMLDivElement | null>(null);
   const mapRef = useRef<maplibregl.Map | null>(null);
+  const clickLayersRef = useRef([
+    "heritage-polygons-fill",
+    "heritage-polygons-outline",
+    "heritage-urban-planning-outline",
+    "heritage-points",
+  ]);
 
   /* ======================================================
      1. CREATE MAP (ONCE)
@@ -41,6 +59,7 @@ export function Map({ cityId, heritageData }: MapProps) {
     });
 
     mapRef.current = map;
+    onMapReady?.(map);
 
     return () => {
       map.remove();
@@ -76,6 +95,43 @@ export function Map({ cityId, heritageData }: MapProps) {
       duration: 800,
     });
   }, [cityId]);
+
+  /* ======================================================
+     4. HANDLE MAP CLICKS
+     ====================================================== */
+  useEffect(() => {
+    const map = mapRef.current;
+    if (!map) return;
+
+    const handleClick = (event: maplibregl.MapMouseEvent) => {
+      const features = map.queryRenderedFeatures(event.point, {
+        layers: clickLayersRef.current,
+      });
+
+      if (!features.length) {
+        onEmptyClick?.();
+        return;
+      }
+
+      onFeatureClick?.(features[0], event.lngLat);
+    };
+
+    const handleMove = (event: maplibregl.MapMouseEvent) => {
+      const features = map.queryRenderedFeatures(event.point, {
+        layers: clickLayersRef.current,
+      });
+      map.getCanvas().style.cursor = features.length ? "pointer" : "";
+    };
+
+    map.on("click", handleClick);
+    map.on("mousemove", handleMove);
+
+    return () => {
+      map.off("click", handleClick);
+      map.off("mousemove", handleMove);
+      map.getCanvas().style.cursor = "";
+    };
+  }, [onEmptyClick, onFeatureClick]);
 
   return <div ref={mapContainerRef} className="w-full h-full" />;
 }
