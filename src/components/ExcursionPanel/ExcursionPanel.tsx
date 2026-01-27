@@ -20,10 +20,10 @@ export function ExcursionPanel({
 
   return (
     <div
-      className={`absolute right-4 z-10 w-80 ${
-        isOpen ? "top-4 bottom-4" : "top-20"
+      className={`absolute right-4 z-10 ${
+        isOpen ? "w-80 top-20 bottom-4" : "top-20"
       }`}
-    >
+      >
       {!isOpen ? (
         <button
           type="button"
@@ -118,7 +118,7 @@ export function ExcursionPanel({
               className="flex-1 rounded-xl px-3 py-2 text-sm font-medium text-black bg-form-hover hover:accent disabled:opacity-50"
               disabled={items.length === 0}
             >
-              Пройти екскурсію
+              Побудувати маршрут
             </button>
           </div>
         </div>
