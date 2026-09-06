@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/hlr-front/static/css/main.0c98a495.css",
+    "main.js": "/hlr-front/static/js/main.d56140ed.js",
+    "static/media/logo.svg": "/hlr-front/static/media/logo.a6d06d2e3459ece3a91ca9cdfe808b50.svg",
+    "index.html": "/hlr-front/index.html",
+    "static/media/X_icon.svg": "/hlr-front/static/media/X_icon.52c89125e737ac1822d9980497dfef29.svg",
+    "static/media/burger_icon.svg": "/hlr-front/static/media/burger_icon.ef6b5f183584f42a92e879815c0466d8.svg",
+    "main.0c98a495.css.map": "/hlr-front/static/css/main.0c98a495.css.map",
+    "main.d56140ed.js.map": "/hlr-front/static/js/main.d56140ed.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.0c98a495.css",
+    "static/js/main.d56140ed.js"
+  ]
+}
