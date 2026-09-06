@@ -7,6 +7,7 @@ import { HeritageFeatureCollection } from "../../types/heritageObj/HeritageFeatu
 import { CitySwitcher } from "../../components/CitySwitcher/CitySwitcher";
 import { FeaturePopup } from "../../components/FeaturePopup/FeaturePopup";
 import { ExcursionPanel } from "../../components/ExcursionPanel/ExcursionPanel";
+import { StartRouteModal } from "../../components/StartRouteModal";
 import { useExcursionController } from "../../controllers/useExcursionController";
 
 interface HomePageProps {
@@ -22,12 +23,20 @@ const HomePage = ({ cityId, setCityId, heritageData }: HomePageProps) => {
     selectedLocation,
     excursionItems,
     isExcursionActive,
+    isStartModalOpen,
+    isBuildingRoute,
+    routeError,
+    routeGeojson,
     handleFeatureClick,
     handleEmptyClick,
     handleToggleExcursion,
     handleRemoveItem,
     handleClearItems,
     closeSelectedFeature,
+    handleBuildRouteRequest,
+    handleSelectStartManual,
+    handleSelectStartGeolocation,
+    handleCancelStartSelection,
   } = useExcursionController(cityId);
 
   return (
@@ -39,6 +48,7 @@ const HomePage = ({ cityId, setCityId, heritageData }: HomePageProps) => {
           onFeatureClick={handleFeatureClick}
           onEmptyClick={handleEmptyClick}
           onMapReady={setMapInstance}
+          routeGeojson={routeGeojson}
         />
         {selectedFeature ? (
           <FeaturePopup
@@ -51,9 +61,19 @@ const HomePage = ({ cityId, setCityId, heritageData }: HomePageProps) => {
         <ExcursionPanel
           isActive={isExcursionActive}
           items={excursionItems}
+          isBuildingRoute={isBuildingRoute}
+          routeError={routeError}
           onToggleActive={handleToggleExcursion}
           onRemoveItem={handleRemoveItem}
           onClearItems={handleClearItems}
+          onBuildRouteRequest={handleBuildRouteRequest}
+        />
+        <StartRouteModal
+          isOpen={isStartModalOpen}
+          isBuildingRoute={isBuildingRoute}
+          onSelectManual={handleSelectStartManual}
+          onSelectGeolocation={handleSelectStartGeolocation}
+          onClose={handleCancelStartSelection}
         />
       </div>
     );

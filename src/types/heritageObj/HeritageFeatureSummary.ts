@@ -9,4 +9,5 @@ export interface HeritageFeatureSummary {
   date: string | null;
   shortDescription: string | null;
   decision: string | null;
+  location: [number, number] | null;
 }

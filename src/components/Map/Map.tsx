@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import maplibregl, { MapGeoJSONFeature } from "maplibre-gl";
+import type { GeoJSON } from "geojson";
 import "maplibre-gl/dist/maplibre-gl.css";
 import { CITIES, CityId } from "../../config/cities";
 import { HeritageFeatureCollection } from "../../types/heritageObj/HeritageFeatureCollection";
@@ -11,8 +12,9 @@ interface MapProps {
     feature: MapGeoJSONFeature,
     lngLat: maplibregl.LngLatLike,
   ) => void;
-  onEmptyClick?: () => void;
+  onEmptyClick?: (lngLat: maplibregl.LngLatLike) => void;
   onMapReady?: (map: maplibregl.Map) => void;
+  routeGeojson?: GeoJSON.Feature<GeoJSON.LineString> | null;
 }
 
 export function Map({
@@ -21,6 +23,7 @@ export function Map({
   onFeatureClick,
   onEmptyClick,
   onMapReady,
+  routeGeojson,
 }: MapProps) {
   const mapContainerRef = useRef<HTMLDivElement | null>(null);
   const mapRef = useRef<maplibregl.Map | null>(null);
@@ -31,6 +34,8 @@ export function Map({
     "heritage-points",
   ]);
 
+  const isDraggingRef = useRef(false);
+  
   /* ======================================================
      1. CREATE MAP (ONCE)
      ====================================================== */
@@ -104,12 +109,16 @@ export function Map({
     if (!map) return;
 
     const handleClick = (event: maplibregl.MapMouseEvent) => {
+      if (isDraggingRef.current) {
+        isDraggingRef.current = false;
+        return;
+      }
       const features = map.queryRenderedFeatures(event.point, {
         layers: clickLayersRef.current,
       });
 
       if (!features.length) {
-        onEmptyClick?.();
+        onEmptyClick?.(event.lngLat);
         return;
       }
 
@@ -123,15 +132,89 @@ export function Map({
       map.getCanvas().style.cursor = features.length ? "pointer" : "";
     };
 
+    const handleDragStart = () => {
+      isDraggingRef.current = true;
+    };
+
+    const handleDragEnd = () => {
+      window.setTimeout(() => {
+        isDraggingRef.current = false;
+      }, 0);
+    };
+
     map.on("click", handleClick);
     map.on("mousemove", handleMove);
+    map.on("dragstart", handleDragStart);
+    map.on("dragend", handleDragEnd);
 
     return () => {
       map.off("click", handleClick);
       map.off("mousemove", handleMove);
+      map.off("dragstart", handleDragStart);
+      map.off("dragend", handleDragEnd);
       map.getCanvas().style.cursor = "";
     };
   }, [onEmptyClick, onFeatureClick]);
+
+  useEffect(() => {
+    const map = mapRef.current;
+    if (!map) return;
+
+    const sourceId = "excursion-route";
+    const layerId = "excursion-route-line";
+
+    const applyRoute = () => {
+      if (!routeGeojson) {
+        if (map.getLayer(layerId)) {
+          map.removeLayer(layerId);
+        }
+        if (map.getSource(sourceId)) {
+          map.removeSource(sourceId);
+        }
+        return;
+      }
+
+      const existingSource = map.getSource(sourceId) as
+        | maplibregl.GeoJSONSource
+        | undefined;
+
+      if (!existingSource) {
+        map.addSource(sourceId, {
+          type: "geojson",
+          data: routeGeojson,
+        });
+      } else {
+        existingSource.setData(routeGeojson);
+      }
+
+      if (!map.getLayer(layerId)) {
+        map.addLayer({
+          id: layerId,
+          type: "line",
+          source: sourceId,
+          layout: {
+            "line-join": "round",
+            "line-cap": "round",
+          },
+          paint: {
+            "line-color": "#22c55e",
+            "line-width": 4,
+            "line-opacity": 0.9,
+          },
+        });
+      }
+    };
+
+    if (map.isStyleLoaded()) {
+      applyRoute();
+      return;
+    }
+
+    map.once("load", applyRoute);
+    return () => {
+      map.off("load", applyRoute);
+    };
+  }, [routeGeojson]);
 
   return <div ref={mapContainerRef} className="w-full h-full" />;
 }
