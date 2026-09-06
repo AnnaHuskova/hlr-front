@@ -44,7 +44,7 @@ export function Map({
 
     const map = new maplibregl.Map({
       container: mapContainerRef.current,
-      style: "https://tile.openstreetmap.org.ua/styles/positron-gl-style/style.json",
+      style: "https://basemaps.cartocdn.com/gl/positron-gl-style/style.json",
       center: CITIES[cityId].center,
       zoom: CITIES[cityId].zoom,
       maxBounds: CITIES[cityId].bounds,
