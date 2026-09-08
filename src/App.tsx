@@ -6,6 +6,7 @@ import { MapLayout } from "./layouts/MapLayout/MapLayout";
 import HomePage from "./pages/HomePage";
 import { CityId } from "./config/cities";
 import { HeritageFeatureCollection } from "./types/heritageObj/HeritageFeatureCollection";
+import {AboutPage} from "./pages/AboutPage";
 
 const BACKEND_URL = envVars.REACT_APP_BACKEND_URL!;
 const HERITAGE_ENDPOINT = envVars.REACT_APP_HERITAGE_ENDPOINT!;
@@ -49,6 +50,7 @@ function App() {
               }
             />
           </Route>
+          <Route path="/about" element={<AboutPage />} />
         </Route>
 
         <Route path="*" element={<Navigate to="/" replace />} />
