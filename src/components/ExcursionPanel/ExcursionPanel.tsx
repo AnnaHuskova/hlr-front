@@ -1,5 +1,6 @@
 import { useState } from "react";
 import type { HeritageFeatureSummary } from "../../types/heritageObj/HeritageFeatureSummary";
+import { useTranslation } from "react-i18next";
 
 interface ExcursionPanelProps {
   isActive: boolean;
@@ -23,7 +24,10 @@ export function ExcursionPanel({
   onClearItems,
   onBuildRouteRequest,
 }: ExcursionPanelProps) {
+
   const [isOpen, setIsOpen] = useState(false);
+  const { t } = useTranslation();
+
 
   return (
     <div
@@ -37,7 +41,7 @@ export function ExcursionPanel({
           onClick={() => setIsOpen(true)}
           className="w-full rounded-2xl bg-white px-4 py-3 text-sm font-semibold text-black shadow-md hover:bg-form-hover"
         >
-          Пройти екскурсію
+          {t("excursion.title")}
         </button>
       ) : (
         <div
@@ -48,12 +52,12 @@ export function ExcursionPanel({
           <div className="flex items-start justify-between gap-2 px-4 pt-4">
             <div className="space-y-1">
               <h3 className="text-base font-semibold text-black">
-                Пройти екскурсію
+                {t("excursion.title")}
               </h3>
               <p className="text-xs text-black/60">
                 {isActive
-                  ? "Клікайте по обʼєктах на мапі, щоб додати їх до списку."
-                  : "Увімкніть добір, щоб додавати обʼєкти до екскурсії."}
+                  ? t("excursion.selectHint")
+                  : t("excursion.inactiveHint")}
               </p>
             </div>
             <div className="flex items-center gap-2">
@@ -61,7 +65,7 @@ export function ExcursionPanel({
                 type="button"
                 onClick={() => setIsOpen(false)}
                 className="text-xs text-black/60 hover:text-black"
-                aria-label="Згорнути"
+                aria-label={t("excursion.collapse")}
               >
                 ✕
               </button>
@@ -73,12 +77,12 @@ export function ExcursionPanel({
             className="text-xs font-medium text-accent hover:text-black disabled:opacity-50"
             disabled={items.length === 0}
             >
-            Очистити список
+            {t("excursion.clearList")}
         </button>
           <div className="min-h-0 flex-1 overflow-y-auto px-4 py-3">
             {items.length === 0 ? (
               <p className="text-sm text-black/60">
-                Список порожній. Додайте обʼєкти для маршруту.
+                {t("excursion.emptyList")}
               </p>
             ) : (
               <ul className="space-y-2">
@@ -100,7 +104,7 @@ export function ExcursionPanel({
                       onClick={() => onRemoveItem(item.id)}
                       className="text-xs text-accent hover:text-black"
                     >
-                      Видалити
+                      {t("excursion.remove")}
                     </button>
                   </li>
                 ))}
@@ -122,7 +126,9 @@ export function ExcursionPanel({
                   : "bg-accent text-white hover:bg-accent/90"
               }`}
             >
-              {isActive ? "Завершити добір" : "Додати обʼєкти"}
+              {isActive
+                ? t("excursion.finishSelection")
+                : t("excursion.addObjects")}
             </button>
             <button
               type="button"
@@ -130,7 +136,7 @@ export function ExcursionPanel({
               disabled={items.length === 0 || isBuildingRoute}
               onClick={onBuildRouteRequest}
             >
-              Побудувати маршрут
+              {t("excursion.buildRoute")}
             </button>
           </div>
 

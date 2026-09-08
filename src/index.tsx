@@ -5,6 +5,7 @@ import { BrowserRouter } from 'react-router-dom';
 // import ReactGA from "react-ga4"; // подключаем гугл аналитику
 import envVars from "./js/env";
 import './styles.css';
+import "./i18n";
 
 const root = ReactDOM.createRoot(
 	document.getElementById('root') as HTMLElement

@@ -3,37 +3,37 @@ import { HERITAGE_COLORS } from "./heritageStyle";
 export const HERITAGE_LEGEND = [
   {
     id: "garden_park",
-    label: "Пам'ятка садово-паркового мистецтва",
+    translationKey: "legend.gardenPark",
     color: HERITAGE_COLORS.garden_park,
     geometry: "polygon",
   },
   {
     id: "isProposed",
-    label: "Запропонований обʼєкт",
+    translationKey: "legend.proposed",
     color: HERITAGE_COLORS.isProposed,
     geometry: "polygon-point",
   },
   {
     id: "isHeritage",
-    label: "Обʼєкт культурної спадщини",
+    translationKey: "legend.heritage",
     color: HERITAGE_COLORS.isHeritage,
     geometry: "polygon-point",
   },
   {
     id: "significant",
-    label: "Значні історичні будівлі",
+    translationKey: "legend.significant",
     color: HERITAGE_COLORS.significant,
     geometry: "polygon-point",
   },
   {
     id: "ordinary",
-    label: "Рядові історичні будівлі",
+    translationKey: "legend.ordinary",
     color: HERITAGE_COLORS.ordinary,
     geometry: "polygon-point",
   },
   {
     id: "urban_planning",
-    label: "Визначний містобудівний ареал",
+    translationKey: "legend.urbanPlanning",
     color: HERITAGE_COLORS.isHeritage,
     geometry: "outline-only",
   },

@@ -3,11 +3,12 @@ import { NavLink, useLocation } from 'react-router-dom';
 // import { List, MenuItem, Typography } from '@mui/material';
 import { ReactComponent as BurgerIcon } from '../../assets/isons/burger_icon.svg';
 import { ReactComponent as CloseIcon } from '../../assets/isons/X_icon.svg';
+import { useTranslation } from 'react-i18next';
 
 
 type RouteType = {
 	path: string;
-	displayText: string;
+	translationKey: string;
 }
 
 const routes: RouteType[] = [
@@ -17,11 +18,11 @@ const routes: RouteType[] = [
 	// },
 	{
 		path: '/',
-		displayText: 'Мапа'
+		translationKey: 'nav.map',
 	},
   {
 		path: '/about',
-		displayText: 'Про проект'
+		translationKey: 'nav.aboutProject',
 	},
 	// {
 	// 	path: '/blog',
@@ -31,7 +32,7 @@ const routes: RouteType[] = [
 
 const NavMenu = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-  
+  const { t } = useTranslation();
 
   const activeStyles =
     // underline for mobile
@@ -75,7 +76,7 @@ const NavMenu = () => {
               }`
             }
           >
-            <span className="px-8 text-center">{route.displayText}</span>
+            <span className="px-8 text-center">{t(route.translationKey)}</span>
           </NavLink>
         ))}
       </nav>
@@ -95,7 +96,7 @@ const NavMenu = () => {
 				}`
 				}
 			>
-				{route.displayText}
+				{t(route.translationKey)}
 			</NavLink>
     ))}
   		</nav>

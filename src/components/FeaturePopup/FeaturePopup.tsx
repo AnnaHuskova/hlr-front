@@ -2,7 +2,7 @@ import { useEffect, useMemo } from "react";
 import { createPortal } from "react-dom";
 import maplibregl, { LngLatLike, Map } from "maplibre-gl";
 import type { HeritageFeatureSummary } from "../../types/heritageObj/HeritageFeatureSummary";
-
+import { useTranslation } from "react-i18next";
 interface FeaturePopupProps {
   feature: HeritageFeatureSummary;
   onClose: () => void;
@@ -16,6 +16,7 @@ export function FeaturePopup({
   map,
   coordinates,
 }: FeaturePopupProps) {
+  const { t } = useTranslation();
   const container = useMemo(() => document.createElement("div"), []);
 
   useEffect(() => {
@@ -52,30 +53,30 @@ export function FeaturePopup({
           type="button"
           onClick={onClose}
           className="text-sm text-black/60 hover:text-black"
-          aria-label="Закрити"
+          aria-label={t("popup.close")}
         >
           ✕
         </button>
       </div>
       <div className="text-sm text-black/70 space-y-2">
         <p>
-          <span className="font-medium text-black">Статус:</span>{" "}
+          <span className="font-medium text-black">{t("popup.status")}:</span>{" "}
           {feature.displayStatus.label}
         </p>
         <p>
-          <span className="font-medium text-black">Тип:</span>{" "}
+          <span className="font-medium text-black">{t("popup.type")}:</span>{" "}
           {feature.typeLabel}
         </p>
         <p>
-          <span className="font-medium text-black">Дата:</span>{" "}
+          <span className="font-medium text-black">{t("popup.date")}:</span>{" "}
           {feature.date ?? "—"}
         </p>
         <p>
-          <span className="font-medium text-black">Короткий опис:</span>{" "}
+          <span className="font-medium text-black">{t("popup.shortDescription")}:</span>{" "}
           {feature.shortDescription ?? "—"}
         </p>
         <p>
-          <span className="font-medium text-black">Рішення:</span>{" "}
+          <span className="font-medium text-black">{t("popup.decision")}:</span>{" "}
           {feature.decision ?? "—"}
         </p>
       </div>

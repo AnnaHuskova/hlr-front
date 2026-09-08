@@ -1,5 +1,6 @@
 import { memo } from 'react';
 import { NavMenu } from '../NavMenu';
+import { LanguageSwitcher } from '../LanguageSwitcher/LanguageSwitcher';
 import { ReactComponent as Logo } from '../../assets/isons/logo.svg';
 
 
@@ -14,9 +15,12 @@ const Header = memo(() => {
             </div>
           </a>
                   <NavMenu />
+          <div className="flex items-center gap-1 text-sm whitespace-nowrap">
+                <LanguageSwitcher />
+          </div>        
           <div className='bg-accent'>
-            <h1 className='lg:hidden font-sans font-bold text-[12px] mx-3 py-3'>{'<'}NLR{'>'}</h1>
-            <h1 className='hidden lg:block font-sans font-bold text-base mx-6 py-4'>{'<'}Historecal Landscape Remembrence{'>'}</h1>
+            <h1 className='lg:hidden font-sans font-bold text-[12px] mx-3 py-3'>{'<'}HLR{'>'}</h1>
+            <h1 className='hidden lg:block font-sans font-bold text-base mx-6 py-4'>{'<'}Historical Landscape Remembrance{'>'}</h1>
           </div>
         </header>
     );

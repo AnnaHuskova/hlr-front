@@ -1,6 +1,6 @@
 export type HeritageLegendItem = {
   id: string;
-  label: string;
+  translationKey: string;
   color: string;
   geometry: "polygon" | "polygon-point" | "outline-only";
 };
