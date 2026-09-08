@@ -62,5 +62,31 @@ export const en = {
         geolocation: "Allow geolocation",
     },
 
+    aboutPage: {
+    nav: {
+        about: "ABOUT",
+        team: "TEAM",
+        contributors: "CONTRIBUTORS",
+        partners: "PARTNERS",
+        contacts: "CONTACTS",
+    },
+    banner: {
+            title: "making invisible history visible",        
+        },
+
+     description: {
+        introBefore: "Welcome👋 to the project platform",
+        projectName: "Historical Landscape Remembrance",
+
+        paragraph1:
+        "Historical Landscape Remembrance (HLR) is a digital research and civic-tech project focused on the identification, documentation and visualisation of historical urban landscapes and cultural heritage.",
+
+        paragraph2:
+        "The project combines historical sources, spatial data and digital technologies to reveal the transformation of the urban environment and make previously invisible layers of urban history accessible.",
+
+        paragraph3:
+        "HLR provides an interactive spatial environment in which users can explore heritage objects, historical buildings and urban structures within their geographical and historical context.",
+    },
+    },
   },
 };
