@@ -16,6 +16,9 @@ function App() {
   const [heritageData, setHeritageData] =
     useState<HeritageFeatureCollection | null>(null);
 
+  const [allHeritageData, setAllHeritageData] =
+  useState<HeritageFeatureCollection | null>(null);
+
   useEffect(() => {
     const fetchHeritage = async () => {
       try {
@@ -31,6 +34,23 @@ function App() {
 
     fetchHeritage();
   }, [cityId]);
+
+  useEffect(() => {
+    const fetchAllHeritage = async () => {
+      try {
+        const res = await fetch(
+          `${BACKEND_URL}${HERITAGE_ENDPOINT}`
+        );
+
+        const geojson = await res.json();
+        setAllHeritageData(geojson);
+      } catch (e) {
+        console.error("Failed to load all heritage data", e);
+      }
+    };
+
+    fetchAllHeritage();
+  }, []);
 
   return (
     <>
@@ -50,7 +70,7 @@ function App() {
               }
             />
           </Route>
-          <Route path="/about" element={<AboutPage />} />
+          <Route path="/about" element={<AboutPage heritageData={allHeritageData}/>} />
         </Route>
 
         <Route path="*" element={<Navigate to="/" replace />} />

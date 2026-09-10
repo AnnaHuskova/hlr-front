@@ -75,19 +75,30 @@ export const en = {
         },
 
      description: {
-        welcome: "Welcome👋",
-        introBefore: "to the project platform",
-        projectName: "Historical Landscape Remembrance",
+            welcome: "Welcome👋",
+            introBefore: "to the project platform",
+            projectName: "Historical Landscape Remembrance",
 
-        paragraph1:
-        "> Historical Landscape Remembrance (HLR) is a research and civic-tech project focused on identifying, documenting and protecting historical urban landscapes and cultural heritage, including those that remain outside formal heritage recognition.",
+            paragraph1:
+            "> Historical Landscape Remembrance (HLR) is a research and civic-tech project focused on identifying, documenting and protecting historical urban landscapes and cultural heritage, including those that remain outside formal heritage recognition.",
 
-        paragraph2:
-        "> Founded in 2023 in response to the ongoing loss and degradation of historically valuable urban landscapes in Ukrainian cities, HLR combines historical research, spatial data, civic advocacy and digital technologies to identify unrecognised heritage, document its transformation and visualise previously invisible layers of urban history.",
+            paragraph2:
+            "> Founded in 2023 in response to the ongoing loss and degradation of historically valuable urban landscapes in Ukrainian cities, HLR combines historical research, spatial data, civic advocacy and digital technologies to identify unrecognised heritage, document its transformation and visualise previously invisible layers of urban history.",
 
-        paragraph3:
-        "> The HLR digital platform transforms the results of this research into an interactive spatial environment where users can explore cultural heritage objects, historical buildings and urban structures within their geographical, historical and legislative contexts. Spatial analysis provides an evidence base for the protection of valuable heritage objects and landscapes.",
-    },
+            paragraph3:
+            "> The HLR digital platform transforms the results of this research into an interactive spatial environment where users can explore cultural heritage objects, historical buildings and urban structures within their geographical, historical and legislative contexts. Spatial analysis provides an evidence base for the protection of valuable heritage objects and landscapes.",
+        },
+
+        development: {
+          title: "#Project development",
+        },
+
+        stats: {
+          cities: "Pilot cities",
+          objects: "Mapped objects",
+          kryvyiRih: "Kryvyi Rih",
+          kamianske: "Kamianske",
+        },
     },
   },
 };

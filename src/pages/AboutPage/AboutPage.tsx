@@ -1,8 +1,9 @@
 import { useTranslation } from "react-i18next";
 import aboutBanner from "../../assets/isons/images/hlr-about-banner_str.png";
-import { ReactComponent as HlrLogo } from "../../assets/isons/logo_slogan.svg";
+import { AboutProjectStats } from "../../components/AboutProjectStats";
+import { AboutPageProps } from "../../props/AboutPageProps";
 
-export function AboutPage() {
+export function AboutPage({ heritageData }: AboutPageProps) {
   const { t } = useTranslation();
 
   return (
@@ -117,7 +118,7 @@ export function AboutPage() {
             </div>
             </section>
 
-
+            <AboutProjectStats heritageData={heritageData} />
             <section
             id="team"
             className="mt-10 scroll-mt-24 border-t border-black/30 pt-6"
