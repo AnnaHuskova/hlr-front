@@ -9,6 +9,7 @@ import { FeaturePopup } from "../../components/FeaturePopup/FeaturePopup";
 import { ExcursionPanel } from "../../components/ExcursionPanel/ExcursionPanel";
 import { StartRouteModal } from "../../components/StartRouteModal";
 import { useExcursionController } from "../../controllers/useExcursionController";
+import { MapAnalyticsDashboard } from "../../components/MapAnalyticsDashboard";
 
 interface HomePageProps {
   cityId: CityId;
@@ -50,6 +51,7 @@ const HomePage = ({ cityId, setCityId, heritageData }: HomePageProps) => {
           onMapReady={setMapInstance}
           routeGeojson={routeGeojson}
         />
+        <MapAnalyticsDashboard heritageData={heritageData} />
         {selectedFeature ? (
           <FeaturePopup
             feature={selectedFeature}

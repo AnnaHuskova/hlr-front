@@ -101,5 +101,13 @@ export const uk = {
             },
 
     },
+
+    mapDashboard: {
+        all: "Усі об’єкти",
+        proposed: "Запропоновані",
+        proposedHint: "(незахищені)",
+        protected: "Культурна спадщина",
+        protectedHint: "(захищені)",
+    },
   },
 };

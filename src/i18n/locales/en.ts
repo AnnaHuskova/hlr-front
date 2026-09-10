@@ -100,5 +100,12 @@ export const en = {
           kamianske: "Kamianske",
         },
     },
+    mapDashboard: {
+      all: "All heritage",
+      proposed: "Proposed",
+      proposedHint: "(unprotected)",
+      protected: "Cultural heritage",
+      protectedHint: "(protected)",
+    },
   },
 };
