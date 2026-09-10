@@ -7,7 +7,7 @@ export function AboutPage({ heritageData }: AboutPageProps) {
   const { t } = useTranslation();
 
   return (
-    <div className="w-full min-h-screen bg-white">
+    <div className="w-full bg-white">
 
       {/* HLR BANNER — FULL WIDTH */}
         <section className="relative w-full">

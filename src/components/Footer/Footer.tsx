@@ -1,12 +1,16 @@
-import { memo } from 'react';
-
-
+import { memo } from "react";
+import neboPoleLogo from "../../assets/isons/logo_hlr.svg";
 
 const Footer = memo(() => {
-  return <footer className = "hidden lg:flex flex-row min-h-20 justify-between items-center">
+  return (
+    <footer className="hidden lg:flex h-[63px] items-center px-6">
+      <img
+        src={neboPoleLogo}
+        alt="NeboPole.Labs"
+        className="h-full w-auto"
+      />
+    </footer>
+  );
+});
 
-    <label className='mx-6 my-4 text-sm text-right'> NeboPoleLabs </label>
-  </footer>
-})
-
-export {Footer};
+export { Footer };

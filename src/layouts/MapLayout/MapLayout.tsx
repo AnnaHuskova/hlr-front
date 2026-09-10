@@ -3,7 +3,7 @@ import { HeritageLegend } from "../../components/Legend/HeritageLegend";
 
 export function MapLayout() {
   return (
-    <div className="relative w-full h-full">
+    <div className="relative w-full h-full overflow-hidden">
       <Outlet />
       <HeritageLegend />
     </div>
