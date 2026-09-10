@@ -80,13 +80,24 @@ export function AboutPage() {
             >
             <div className="text-black">
 
-                <p className="text-2xl md:text-3xl mb-7 leading-tight">
+               <p className="text-2xl md:text-3xl mb-7 leading-tight">
+
                 <span className="font-semibold">
+                    {t("aboutPage.description.welcome")}
+                </span>
+
+                {" "}
+
+                <span className="font-normal">
                     {t("aboutPage.description.introBefore")}
-                </span>{" "}
+                </span>
+
+                {" "}
+
                 <span className="font-semibold">
                     {t("aboutPage.description.projectName")}
                 </span>
+
                 </p>
 
                 <div className="space-y-6 text-lg md:text-xl leading-relaxed">

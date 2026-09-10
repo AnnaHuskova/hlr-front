@@ -75,17 +75,18 @@ export const en = {
         },
 
      description: {
-        introBefore: "Welcome👋 to the project platform",
+        welcome: "Welcome👋",
+        introBefore: "to the project platform",
         projectName: "Historical Landscape Remembrance",
 
         paragraph1:
-        "Historical Landscape Remembrance (HLR) is a digital research and civic-tech project focused on the identification, documentation and visualisation of historical urban landscapes and cultural heritage.",
+        "> Historical Landscape Remembrance (HLR) is a research and civic-tech project focused on identifying, documenting and protecting historical urban landscapes and cultural heritage, including those that remain outside formal heritage recognition.",
 
         paragraph2:
-        "The project combines historical sources, spatial data and digital technologies to reveal the transformation of the urban environment and make previously invisible layers of urban history accessible.",
+        "> Founded in 2023 in response to the ongoing loss and degradation of historically valuable urban landscapes in Ukrainian cities, HLR combines historical research, spatial data, civic advocacy and digital technologies to identify unrecognised heritage, document its transformation and visualise previously invisible layers of urban history.",
 
         paragraph3:
-        "HLR provides an interactive spatial environment in which users can explore heritage objects, historical buildings and urban structures within their geographical and historical context.",
+        "> The HLR digital platform transforms the results of this research into an interactive spatial environment where users can explore cultural heritage objects, historical buildings and urban structures within their geographical, historical and legislative contexts. Spatial analysis provides an evidence base for the protection of valuable heritage objects and landscapes.",
     },
     },
   },
