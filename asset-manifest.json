@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/hlr-front/static/css/main.7c0b0472.css",
-    "main.js": "/hlr-front/static/js/main.ddf06125.js",
+    "main.css": "/hlr-front/static/css/main.03d4a671.css",
+    "main.js": "/hlr-front/static/js/main.c5baef14.js",
     "static/media/hlr-about-banner_str.png": "/hlr-front/static/media/hlr-about-banner_str.3829c76070f4fee1ff5c.png",
     "static/media/logo_hlr.svg": "/hlr-front/static/media/logo_hlr.d16957adc3c44c78cc0fe60418d1b6bb.svg",
     "static/media/logo.svg": "/hlr-front/static/media/logo.a6d06d2e3459ece3a91ca9cdfe808b50.svg",
@@ -10,11 +10,11 @@
     "static/media/logo_panel_close.svg": "/hlr-front/static/media/logo_panel_close.8bd3ca272d0ddb02ee300cc594ff5a23.svg",
     "static/media/X_icon.svg": "/hlr-front/static/media/X_icon.52c89125e737ac1822d9980497dfef29.svg",
     "static/media/burger_icon.svg": "/hlr-front/static/media/burger_icon.ef6b5f183584f42a92e879815c0466d8.svg",
-    "main.7c0b0472.css.map": "/hlr-front/static/css/main.7c0b0472.css.map",
-    "main.ddf06125.js.map": "/hlr-front/static/js/main.ddf06125.js.map"
+    "main.03d4a671.css.map": "/hlr-front/static/css/main.03d4a671.css.map",
+    "main.c5baef14.js.map": "/hlr-front/static/js/main.c5baef14.js.map"
   },
   "entrypoints": [
-    "static/css/main.7c0b0472.css",
-    "static/js/main.ddf06125.js"
+    "static/css/main.03d4a671.css",
+    "static/js/main.c5baef14.js"
   ]
 }
