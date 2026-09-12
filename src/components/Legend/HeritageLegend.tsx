@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 export function HeritageLegend() {
   const { t } = useTranslation();
   return (
-    <div className="absolute bottom-6 left-6 bg-white/90 rounded-lg p-3 shadow-md text-sm">
+    <div className="absolute bottom-6 right-6 bg-white/90 rounded-lg p-3 shadow-md text-sm">
       <div className="font-semibold mb-2">{t("legend.title")}</div>
 
       <ul className="space-y-2">

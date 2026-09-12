@@ -36,3 +36,33 @@
     transform: rotate(360deg);
   }
 } */
+/* Heritage filter panel — scroll only content */
+
+.heritage-filter-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: #d000ff transparent;
+}
+
+/* Chrome / Edge / Safari */
+.heritage-filter-scroll::-webkit-scrollbar {
+  width: 4px;
+}
+
+.heritage-filter-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.heritage-filter-scroll::-webkit-scrollbar-thumb {
+  background: #d000ff;
+  border-radius: 999px;
+}
+
+.heritage-filter-scroll::-webkit-scrollbar-thumb:hover {
+  background: #b800df;
+}
+
+.heritage-filter-scroll::-webkit-scrollbar-button {
+  display: none;
+  width: 0;
+  height: 0;
+}

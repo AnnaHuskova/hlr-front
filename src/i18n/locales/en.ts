@@ -107,5 +107,19 @@ export const en = {
       protected: "Cultural heritage",
       protectedHint: "(protected)",
     },
+    heritageType: {
+      architecture: "Architecture",
+      archaeology: "Archaeology",
+      monumentalArt: "Monumental art",
+    },
+    filters: {
+      all: "Total",
+      byStatus: "By status",
+      byType: "By type",
+      analytics: "Analytics",
+
+      analyticsByStatus: "chart by status",
+      analyticsByType: "chart by type",
+    },
   },
 };

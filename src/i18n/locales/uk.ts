@@ -109,5 +109,20 @@ export const uk = {
         protected: "Культурна спадщина",
         protectedHint: "(захищені)",
     },
+
+    heritageType: {
+        architecture: "Архітектури",
+        archaeology: "Археології",
+        monumentalArt: "Монументального мистецтва",
+    },
+    filters: {
+        all: "Всього",
+        byStatus: "За статусом",
+        byType: "За типом",
+        analytics: "Аналітика",
+
+        analyticsByStatus: "діаграма за статусом",
+        analyticsByType: "діаграма за типом",
+    },
   },
 };

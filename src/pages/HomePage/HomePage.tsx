@@ -1,15 +1,25 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import type { Dispatch, SetStateAction } from "react";
 import type { Map as MapInstance } from "maplibre-gl";
+
 import { Map } from "../../components/Map";
 import { CityId } from "../../config/cities";
 import { HeritageFeatureCollection } from "../../types/heritageObj/HeritageFeatureCollection";
+
 import { CitySwitcher } from "../../components/CitySwitcher/CitySwitcher";
 import { FeaturePopup } from "../../components/FeaturePopup/FeaturePopup";
 import { ExcursionPanel } from "../../components/ExcursionPanel/ExcursionPanel";
 import { StartRouteModal } from "../../components/StartRouteModal";
 import { useExcursionController } from "../../controllers/useExcursionController";
 import { MapAnalyticsDashboard } from "../../components/MapAnalyticsDashboard";
+import { HeritageFilterPanel } from "../../components/HeritageFilterPanel";
+
+import {
+  DEFAULT_HERITAGE_FILTERS,
+  HeritageFilters,
+} from "../../types/heritageObj/HeritageFilters";
+
+import { filterHeritageData } from "../../utils/filterHeritageData";
 
 interface HomePageProps {
   cityId: CityId;
@@ -17,8 +27,28 @@ interface HomePageProps {
   heritageData: HeritageFeatureCollection;
 }
 
-const HomePage = ({ cityId, setCityId, heritageData }: HomePageProps) => {
-  const [mapInstance, setMapInstance] = useState<MapInstance | null>(null);
+const HomePage = ({
+  cityId,
+  setCityId,
+  heritageData,
+}: HomePageProps) => {
+  const [mapInstance, setMapInstance] =
+    useState<MapInstance | null>(null);
+
+  const [filters, setFilters] =
+    useState<HeritageFilters>(
+      DEFAULT_HERITAGE_FILTERS
+    );
+
+  const filteredHeritageData = useMemo(
+    () =>
+      filterHeritageData(
+        heritageData,
+        filters
+      ),
+    [heritageData, filters]
+  );
+
   const {
     selectedFeature,
     selectedLocation,
@@ -41,44 +71,60 @@ const HomePage = ({ cityId, setCityId, heritageData }: HomePageProps) => {
   } = useExcursionController(cityId);
 
   return (
-      <div className="relative w-full h-full">
-        <CitySwitcher cityId={cityId} setCityId={setCityId} />
-        <Map
-          cityId={cityId}
-          heritageData={heritageData}
-          onFeatureClick={handleFeatureClick}
-          onEmptyClick={handleEmptyClick}
-          onMapReady={setMapInstance}
-          routeGeojson={routeGeojson}
+    <div className="relative w-full h-full">
+      <CitySwitcher
+        cityId={cityId}
+        setCityId={setCityId}
+      />
+
+      <Map
+        cityId={cityId}
+        heritageData={filteredHeritageData}
+        onFeatureClick={handleFeatureClick}
+        onEmptyClick={handleEmptyClick}
+        onMapReady={setMapInstance}
+        routeGeojson={routeGeojson}
+      />
+
+      <MapAnalyticsDashboard
+        heritageData={heritageData}
+      />
+
+      <HeritageFilterPanel
+        data={heritageData}
+        filters={filters}
+        onChange={setFilters}
+      />
+
+      {selectedFeature ? (
+        <FeaturePopup
+          feature={selectedFeature}
+          onClose={closeSelectedFeature}
+          map={mapInstance}
+          coordinates={selectedLocation}
         />
-        <MapAnalyticsDashboard heritageData={heritageData} />
-        {selectedFeature ? (
-          <FeaturePopup
-            feature={selectedFeature}
-            onClose={closeSelectedFeature}
-            map={mapInstance}
-            coordinates={selectedLocation}
-          />
-        ) : null}
-        <ExcursionPanel
-          isActive={isExcursionActive}
-          items={excursionItems}
-          isBuildingRoute={isBuildingRoute}
-          routeError={routeError}
-          onToggleActive={handleToggleExcursion}
-          onRemoveItem={handleRemoveItem}
-          onClearItems={handleClearItems}
-          onBuildRouteRequest={handleBuildRouteRequest}
-        />
-        <StartRouteModal
-          isOpen={isStartModalOpen}
-          isBuildingRoute={isBuildingRoute}
-          onSelectManual={handleSelectStartManual}
-          onSelectGeolocation={handleSelectStartGeolocation}
-          onClose={handleCancelStartSelection}
-        />
-      </div>
-    );
+      ) : null}
+
+      <ExcursionPanel
+        isActive={isExcursionActive}
+        items={excursionItems}
+        isBuildingRoute={isBuildingRoute}
+        routeError={routeError}
+        onToggleActive={handleToggleExcursion}
+        onRemoveItem={handleRemoveItem}
+        onClearItems={handleClearItems}
+        onBuildRouteRequest={handleBuildRouteRequest}
+      />
+
+      <StartRouteModal
+        isOpen={isStartModalOpen}
+        isBuildingRoute={isBuildingRoute}
+        onSelectManual={handleSelectStartManual}
+        onSelectGeolocation={handleSelectStartGeolocation}
+        onClose={handleCancelStartSelection}
+      />
+    </div>
+  );
 };
 
 export default HomePage;

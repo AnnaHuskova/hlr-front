@@ -1,0 +1,1 @@
+export { HeritageFilterPanel } from "./HeritageFilterPanel";
